@@ -1,0 +1,22 @@
+.RegisterView__container {
+  margin-top: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 14px;
+  max-width: 600px;
+}
+.RegisterView__title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.RegisterView__form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.RegisterView__item {
+  margin: 5px;
+}

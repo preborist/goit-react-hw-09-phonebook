@@ -1,0 +1,13 @@
+.UserMenu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.UserMenu__title {
+  display: flex;
+}
+.UserMenu__email {
+  padding-left: 10px;
+  padding-right: 10px;
+}
