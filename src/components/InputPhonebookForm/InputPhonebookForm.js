@@ -17,7 +17,7 @@ export default function InputPhonebookForm() {
     [dispatch],
   );
 
-  const handleInputChange = e => {
+  const handleInputChange = useCallback(e => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'name':
@@ -31,23 +31,26 @@ export default function InputPhonebookForm() {
       default:
         console.warn(`Тип поля name - ${name} не обрабатывается`);
     }
-  };
+  }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
 
-    if (name && number) {
-      contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
-      )
-        ? alert(`${name} is already in contacts`)
-        : addNewContact(name, number);
-      setName('');
-      setNumber('');
-    } else {
-      alert('Please enter a contact name or phone number!');
-    }
-  };
+      if (name && number) {
+        contacts.some(
+          contact => contact.name.toLowerCase() === name.toLowerCase(),
+        )
+          ? alert(`${name} is already in contacts`)
+          : addNewContact(name, number);
+        setName('');
+        setNumber('');
+      } else {
+        alert('Please enter a contact name or phone number!');
+      }
+    },
+    [addNewContact, contacts, name, number],
+  );
 
   return (
     <>

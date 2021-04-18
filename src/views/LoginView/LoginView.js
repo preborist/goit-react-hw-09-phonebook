@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import './LoginView.scss';
@@ -12,7 +12,7 @@ export default function LoginView() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = useCallback(({ target: { name, value } }) => {
     switch (name) {
       case 'email':
         setEmail(value);
@@ -25,14 +25,17 @@ export default function LoginView() {
       default:
         console.warn(`Тип поля name - ${name} не обрабатывается`);
     }
-  };
+  }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
-  };
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      dispatch(authOperations.logIn({ email, password }));
+      setEmail('');
+      setPassword('');
+    },
+    [dispatch, email, password],
+  );
 
   return (
     <div>

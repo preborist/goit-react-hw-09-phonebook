@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import './RegisterView.scss';
@@ -14,7 +14,7 @@ export default function RegisterView() {
 
   const dispatch = useDispatch();
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = useCallback(({ target: { name, value } }) => {
     switch (name) {
       case 'name':
         setName(value);
@@ -30,17 +30,20 @@ export default function RegisterView() {
       default:
         console.warn(`Тип поля name - ${name} не обрабатывается`);
     }
-  };
+  }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
 
-    dispatch(authOperations.register({ name, email, password }));
+      dispatch(authOperations.register({ name, email, password }));
 
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+      setName('');
+      setEmail('');
+      setPassword('');
+    },
+    [dispatch, email, name, password],
+  );
 
   return (
     <div>
