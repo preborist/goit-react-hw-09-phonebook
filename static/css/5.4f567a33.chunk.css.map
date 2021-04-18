@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/views/HomeView/HomeView.scss"],"names":[],"mappings":"AAAA,iBACE,eAAgB,CAChB,iBAAkB","file":"5.4f567a33.chunk.css","sourcesContent":[".HomeView__title {\r\n  margin-top: 30px;\r\n  text-align: center;\r\n}\r\n"]}
